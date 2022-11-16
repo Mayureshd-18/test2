@@ -7,15 +7,15 @@
 
 class Solution:
     def guessNumber(self, n: int) -> int:
-        start, end = 1, n
-        while start <= end:
-            mid = (start + end)//2
-            if guess(mid) == 0:
-                return mid
-            elif guess(mid) == 1:
-                start = mid + 1
+        max_val = n
+        min_val = 1
+        num = (n - 1)/2 + 1
+        ans = guess(num)
+        while ans != 0:
+            if ans == -1:
+                max_val = num - 1
             else:
-                end = mid
-
-
-
+                min_val = num + 1
+            num = (max_val - min_val)/2 + min_val
+            ans = guess(num)
+        return int(num)
